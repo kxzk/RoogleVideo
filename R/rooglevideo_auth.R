@@ -51,5 +51,5 @@ service_auth <- function(client_id, client_secret, service_json) {
   options("googleAuthR.webapp.client_secret" = client_secret)
   options("googleAuthR.scopes.selected" = c("https://www.googleapis.com/auth/cloud-platform"))
 
-  service_token  <- gar_auth_service(json_file = service_json)
+  service_token  <- googleAuthR::gar_auth_service(json_file = service_json)
 }
