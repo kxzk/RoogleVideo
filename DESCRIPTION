@@ -1,11 +1,12 @@
 Package: RoogleVideo
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Access to Google Cloud's Video Intelligence API
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Authors@R: person("Kade", "Killary", email = "kadekillary@protonmail.com",
+  role = c("aut", "cre"))
+URL: https://github.com/beigebrucewayne/RoogleVideo
+BugReports: https://github.com/beigebrucewayne/RoogleVideo/issues
+Description: Wrapper around the 'Google Cloud' Video Intelligence API.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
