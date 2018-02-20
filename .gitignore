@@ -1,0 +1,8 @@
+.httr-oauth
+rsconnect
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.Rbuildignore
+account_creds.json
