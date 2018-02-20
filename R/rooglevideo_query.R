@@ -15,7 +15,7 @@ annotation_request <- function(asset_path) {
   base64_asset <- to_b64(asset_path)
   body  <- paste0('{ "inputContent": "',base64_asset,'", "features": "',feature,'"}')
 
-  api_request  <- gar_api_generator(baseURI = "https://videointelligence.googleapis.com/v1/videos:annotate", http_header = "POST")
+  api_request  <- googleAuthR::gar_api_generator(baseURI = "https://videointelligence.googleapis.com/v1/videos:annotate", http_header = "POST")
   api_response  <- api_request(the_body = body)
 
   return(api_response$content$name)
@@ -35,7 +35,7 @@ get_annotations <- function(name) {
     stop("WRONG TYPE: name must be a STRING")
 
   annotation_url <- glue::glue("https://videointelligence.googleapis.com/v1/operations/{name}")
-  annotation_get <- gar_api_generator(baseURI = annotation_url, http_header = "GET")
+  annotation_get <- googleAuthR::gar_api_generator(baseURI = annotation_url, http_header = "GET")
   annotation_response <- annotation_get(the_body = NULL)
 
   return(annotation_response$content)
