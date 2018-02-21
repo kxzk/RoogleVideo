@@ -20,7 +20,11 @@ path_to_service_account_json <- ""
 
 token <- service_auth(client_id, client_secret, path_to_service_account_json)
 
-data_endpoint <- annotation_request('~/path/to/asset.mp4')
+# -- Three Detection Methods --
+# LABEL_DETECTION
+# SHOT_CHANGE_DETECTION
+# EXPLICIT_CONTENT_DETECTION
+data_endpoint <- annotation_request('~/path/to/asset.mp4', 'LABEL_DETECTION')
 
 data <- get_annotations(data_endpoint)
 
