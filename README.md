@@ -8,7 +8,7 @@ R interface to the Google Cloud Video Intelligence API
 
 ```r
 library(devtools)
-devtools::install_github('beigebrucewayne/RoogleVideo')
+devtools::install_github('kadekillary/RoogleVideo')
 ```
 
 ### Example Workflow
