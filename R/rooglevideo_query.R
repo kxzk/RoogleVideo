@@ -3,6 +3,8 @@
 #' @param asset_path A string with the path to the asset to annotate.
 #' @param feature A string containing one of the following options:
 #' 'LABEL_DETECTION', 'SHOT_CHANGE_DETECTION', 'EXPLICIT_CONTENT_DETECTION'
+#' @param mode A string containing one of the following options: 
+#' 'LABEL_DETECTION_MODE_UNSPECIFIED', 'SHOT_MODE', 'FRAME_MODE', 'SHOT_AND_FRAME_MODE	'
 #'
 #' @return An endpoint containing the location of the operation.
 #' @export
@@ -11,7 +13,7 @@
 #' \dontrun{
 #' annotation_request('~/Desktop/test_video.mp4', 'LABEL_DETECTION')
 #' }
-annotation_request <- function(asset_path, feature) {
+annotation_request <- function(asset_path, feature, mode) {
 
   if(!is.character(asset_path))
     stop("WRONG TYPE: asset_path must be a STRING")
@@ -20,7 +22,7 @@ annotation_request <- function(asset_path, feature) {
 
   features <- feature
   base64_asset <- to_b64(asset_path)
-  body  <- paste0('{ "inputContent": "',base64_asset,'", "features": "',features,'"}')
+  body  <- paste0('{ "inputContent": "',base64_asset,'", "features": "',features,'"', ',"videoContext": {"labelDetectionConfig": {"labelDetectionMode":"', mode, '"}}','}')
 
   api_request  <- googleAuthR::gar_api_generator(baseURI = "https://videointelligence.googleapis.com/v1/videos:annotate", http_header = "POST")
   api_response  <- api_request(the_body = body)
