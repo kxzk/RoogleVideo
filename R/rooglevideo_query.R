@@ -21,8 +21,24 @@ annotation_request <- function(asset_path, feature, mode) {
     stop("WRONG TYPE: feature must be a STRING")
 
   features <- feature
-  #base64_asset <- to_b64(asset_path)
-  body  <- paste0('{ "inputContent": "',asset_path,'", "features": "',features,'"', ',"videoContext": {"labelDetectionConfig": {"labelDetectionMode":"', mode, '"}}','}')
+  base64_asset <- to_b64(asset_path)
+  body  <- paste0('{ "inputContent": "',base64_asset,'", "features": "',features,'"', ',"videoContext": {"labelDetectionConfig": {"labelDetectionMode":"', mode, '"}}','}')
+
+  api_request  <- googleAuthR::gar_api_generator(baseURI = "https://videointelligence.googleapis.com/v1/videos:annotate", http_header = "POST")
+  api_response  <- api_request(the_body = body)
+
+  return(api_response$content$name)
+}
+
+annotation_request_uri <- function(asset_path, feature, mode) {
+
+  if(!is.character(asset_path))
+    stop("WRONG TYPE: asset_path must be a STRING")
+  if(!is.character(feature))
+    stop("WRONG TYPE: feature must be a STRING")
+
+  features <- feature
+  body  <- paste0('{ "inputUri": "',asset_path,'", "features": "',features,'"', ',"videoContext": {"labelDetectionConfig": {"labelDetectionMode":"', mode, '"}}','}')
 
   api_request  <- googleAuthR::gar_api_generator(baseURI = "https://videointelligence.googleapis.com/v1/videos:annotate", http_header = "POST")
   api_response  <- api_request(the_body = body)
